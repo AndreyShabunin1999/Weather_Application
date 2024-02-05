@@ -29,5 +29,6 @@
 
     <string name="success_toast">данные успешно сохранены!</string>
     <string name="error_toast">данные не сохранены!</string>
+    <string name="text_uv">UV</string>
 
 </resources>

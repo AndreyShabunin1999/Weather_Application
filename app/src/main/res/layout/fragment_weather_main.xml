@@ -32,7 +32,7 @@
             app:tint="@color/white" />
 
         <LinearLayout
-            android:id="@+id/linear_location"
+            android:id="@+id/main_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -129,27 +129,22 @@
 
             </LinearLayout>
 
-            <GridLayout
-                android:id="@+id/detailsContainer"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:columnCount="3"
                 android:orientation="horizontal"
-                android:rowCount="2">
+                android:layout_marginTop="@dimen/_15sdp"
+                android:weightSum="3">
 
-                <!-- First Row -->
                 <LinearLayout
-                    android:layout_width="@dimen/_80sdp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="#3CF1EBF1"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     android:padding="8dp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_gravity="start"
-                    android:layout_column="0"
-                    android:layout_row="0">
+                    android:layout_marginEnd="@dimen/_10sdp">
 
                     <ImageView
                         android:layout_width="@dimen/_20sdp"
@@ -161,7 +156,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="UV"
+                        android:text="@string/text_uv"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp" />
 
@@ -176,17 +171,15 @@
 
                 </LinearLayout>
 
-                <!-- Second Cell -->
                 <LinearLayout
-                    android:layout_width="@dimen/_80sdp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="#3CF1EBF1"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     android:padding="8dp"
-                    android:layout_column="1"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_row="0">
+                    android:layout_marginEnd="@dimen/_10sdp">
 
                     <ImageView
                         android:layout_width="@dimen/_20sdp"
@@ -203,7 +196,7 @@
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/sunset_time"
+                        android:id="@+id/precipitation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
@@ -213,16 +206,14 @@
 
                 </LinearLayout>
 
-                <!-- Third Cell -->
                 <LinearLayout
-                    android:layout_width="@dimen/_80sdp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="#3CF1EBF1"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:padding="8dp"
-                    android:layout_column="2"
-                    android:layout_row="0">
+                    android:padding="8dp">
 
                     <ImageView
                         android:layout_width="@dimen/_20sdp"
@@ -249,113 +240,118 @@
 
                 </LinearLayout>
 
-                <!-- Fourth Cell -->
-                <LinearLayout
-                    android:layout_width="@dimen/_80sdp"
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#3CF1EBF1"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/humidity"
+                    app:tint="@color/white"
+                    android:contentDescription="@string/app_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#3CF1EBF1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:padding="8dp"
-                    android:layout_column="0"
-                    android:layout_row="1">
+                    android:text="@string/humidity"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:src="@drawable/humidity"
-                        app:tint="@color/white"
-                        android:contentDescription="@string/app_name" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/humidity"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10sdp" />
-
-                    <TextView
-                        android:id="@+id/humidity_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp"
-                        android:text="@{@string/humidity_format(data.weatherData.data.current.humidity)}"
-                        tools:text="1 %"/>
-
-                </LinearLayout>
-
-                <!-- Fifth Cell -->
-                <LinearLayout
-                    android:layout_width="@dimen/_80sdp"
+                <TextView
+                    android:id="@+id/humidity_value"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#3CF1EBF1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:padding="8dp"
-                    android:layout_column="1"
-                    android:layout_row="1">
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="@{@string/humidity_format(data.weatherData.data.current.humidity)}"
+                    tools:text="1 %"/>
 
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:src="@drawable/pressure"
-                        app:tint="@color/white"
-                        android:contentDescription="@string/app_name" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pressure"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10sdp" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#3CF1EBF1"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:layout_marginEnd="@dimen/_10sdp">
 
-                    <TextView
-                        android:id="@+id/pressure_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp"
-                        android:text="@{@string/pressure_format(data.weatherData.data.current.pressureMb)}"
-                        tools:text="1 мбар"/>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/pressure"
+                    app:tint="@color/white"
+                    android:contentDescription="@string/app_name" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/_80sdp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#3CF1EBF1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:padding="8dp"
-                    android:layout_column="2"
-                    android:layout_row="1">
+                    android:text="@string/pressure"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:src="@drawable/suai"
-                        android:contentDescription="@string/app_name" />
+                <TextView
+                    android:id="@+id/pressure_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="@{@string/pressure_format(data.weatherData.data.current.pressureMb)}"
+                    tools:text="1 мбар"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_suai"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10sdp" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp"
-                        android:text="@string/suai" />
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#3CF1EBF1"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-            </GridLayout>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/suai"
+                    android:contentDescription="@string/app_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_suai"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="@string/suai" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -404,6 +400,16 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:indeterminateTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

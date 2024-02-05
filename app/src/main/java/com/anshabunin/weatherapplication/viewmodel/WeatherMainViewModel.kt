@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.anshabunin.sketchnote.entities.CurrentWeather
 import com.anshabunin.sketchnote.entities.toResponseWeatherData
 import com.anshabunin.weatherapplication.data.Resource
 import com.anshabunin.weatherapplication.data.remote.ResponseWeatherData
@@ -13,8 +12,6 @@ import com.anshabunin.weatherapplication.data.remote.toCurrentWeather
 import com.anshabunin.weatherapplication.domain.DbRepository
 import com.anshabunin.weatherapplication.domain.NetworkRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -29,9 +26,11 @@ class WeatherMainViewModel(
     private val _dbInsertStatus = MutableLiveData<Boolean>()
     val dbInsertStatus: LiveData<Boolean> get() = _dbInsertStatus
 
-
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
 
     fun getWeatherData(town: String) {
+        setLoading(true)
         viewModelScope.launch {
             try {
                 val data = withContext(Dispatchers.IO) {
@@ -40,9 +39,12 @@ class WeatherMainViewModel(
                 _weatherData.value = Resource.success(data)
             } catch (e: Exception) {
                 _weatherData.value = Resource.error(e.message ?: "An error occurred", null)
+            } finally {
+                setLoading(false)
             }
         }
     }
+
 
 
     fun getSavedWeather() {
@@ -69,6 +71,10 @@ class WeatherMainViewModel(
                 _dbInsertStatus.value = false
             }
         }
+    }
+
+    fun setLoading(value: Boolean) {
+        _isLoading.postValue(value)
     }
 
 

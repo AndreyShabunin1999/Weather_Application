@@ -5,14 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
 import androidx.navigation.findNavController
 import com.anshabunin.weatherapplication.R
 import com.anshabunin.weatherapplication.data.Status
@@ -54,6 +49,13 @@ class WeatherMainFragment : Fragment() {
             WeatherMainFragmentArgs.fromBundle(it).town
         } ?: resources.getString(R.string.default_town)
 
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            binding.mainLinear.visibility = if (isLoading) View.GONE else View.VISIBLE
+        }
+
+
+
         viewModel.getWeatherData(cityName)
 
         binding.networkBtn.setOnClickListener {
@@ -83,10 +85,10 @@ class WeatherMainFragment : Fragment() {
         viewModel.weatherData.observe(viewLifecycleOwner) { resource ->
             when (resource.status) {
                 Status.SUCCESS -> {
-                    // Данные успешно получены, используйте resource.data
                     val weatherData = resource.data
                     println(weatherData)
 
+                    //Костыль для большего размера текста
                     val modifiedUrl = resource.data?.current?.condition?.icon?.replace("64x64", "128x128")
                     Glide.with(requireContext())
                         .load("https:${modifiedUrl}")
@@ -99,24 +101,18 @@ class WeatherMainFragment : Fragment() {
                 Status.ERROR -> {
                     println("error")
                     println(resource.message)
-                    // Произошла ошибка, используйте resource.message
-                    val errorMessage = resource.message
                 }
 
                 Status.LOADING -> {
                     println("loading")
-                    // Идет загрузка
                 }
             }
         }
-
 
         binding.apply {
             lifecycleOwner = this@WeatherMainFragment
             data = viewModel
         }
-
-        // Другие операции с привязкой данных
         return binding.root
     }
 }
