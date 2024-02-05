@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Weather Application</string>
+
+    <string name="sunrise">Восход</string>
+    <string name="sunset">Закат</string>
+    <string name="wind">Ветер</string>
+    <string name="pressure">Давление</string>
+    <string name="humidity">Влажность</string>
+    <string name="text_suai">ГУАП</string>
+    <string name="text_network_btn">Сеть</string>
+    <string name="database_btn_text">БД</string>
+    <string name="text_save_btn">Сохранить</string>
+    <string name="location_description">%1$s, %2$s</string>
+    <string name="temperature_format">%.0f°C</string>
+    <string name="temperature_format_min">мин. температура: %.0f°C</string>
+    <string name="temperature_format_max">макс. температура: %.0f°C</string>
+    <string name="humidity_format">%d%%</string>
+    <string name="pressure_format">%.0f мбар</string>
+    <string name="wind_format">%.1f км/ч</string>
+    <string name="text_precipitation">Осадки</string>
+    <string name="precip_format">%.1f мм</string>
+    <string name="suai">SUAI</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_town">Выберите город</string>
+
+    <string name="default_town">Москва</string>
+
+
+    <string name="success_toast">данные успешно сохранены!</string>
+    <string name="error_toast">данные не сохранены!</string>
+
+</resources>

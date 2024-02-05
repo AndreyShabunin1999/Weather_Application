@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_comp"
+    app:startDestination="@id/weatherMainFragment">
+
+    <fragment
+        android:id="@+id/weatherMainFragment"
+        android:name="com.anshabunin.weatherapplication.ui.WeatherMainFragment"
+        android:label="fragment_weather_main"
+        tools:layout="@layout/fragment_weather_main" >
+        <action
+            android:id="@+id/openListTownFragment"
+            app:destination="@id/listTownFragment" />
+        <argument
+            android:name="town"
+            app:argType="string"
+            android:defaultValue="Moscow" />
+    </fragment>
+    <fragment
+        android:id="@+id/listTownFragment"
+        android:name="com.anshabunin.weatherapplication.ui.ListTownFragment"
+        android:label="fragment_list_town"
+        tools:layout="@layout/fragment_list_town" >
+        <action
+            android:id="@+id/openWeatherMainFragment"
+            app:destination="@id/weatherMainFragment"
+            app:popUpTo="@id/weatherMainFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>
